@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog Detail</title>
+    
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container">
+        <h1>{{ blog.name }}</h1>
+        <p>{{ blog.content }}</p>
+        <h2>Comments</h2>
+        <ul id="comment-list">
+            {% for comment in comments %}
+                <li>{{ comment.comment_text }}</li>
+            {% endfor %}
+        </ul>
+        <h2>Responses</h2>
+        <ul id="response-list">
+            {% for response in responses %}
+                <li>{{ response.user.username }} - {{ response.like_or_not }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+</body>
+</html>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+<div id="blog-detail">
+    
+</div>
+
+<script>
+$(document).ready(function() {
+    $.ajax({
+        url: "/blog/{{ blog.id }}/", 
+        success: function(data) {
+            $('#blog-detail').html(data);
+        }
+    });
+});
+</script>

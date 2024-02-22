@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Recent Liked Blogs</title>
+    
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container">
+        <h1>My Recent Liked Blogs</h1>
+        <ul id="liked-blog-list">
+            
+        </ul>
+    </div>
+
+    
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $.ajax({
+                url: "{% url 'my_recent_liked_blogs' %}",
+                success: function(data) {
+                    $("#liked-blog-list").html(data);
+                }
+            });
+        });
+    </script>
+</body>
+</html>
